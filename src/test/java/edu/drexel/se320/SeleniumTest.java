@@ -14,7 +14,7 @@ import org.junit.Test;
 
 public class SeleniumTest {
 
-    protected final String uiPath = "file:///Users/csg63/teaching/se320/2017/assignments/hw5/web/index.html";
+    protected final String uiPath = "file:///home/zach/Documents/se320/homework5/web/index.html";
 
     @Test
     public void testOneItem() {
@@ -45,7 +45,7 @@ public class SeleniumTest {
              * correctly, and/or you're testing this functionality implicitly. */
             WebElement li = driver.findElement(By.id("item1"));
             // We use startsWith because getText includes the text of the Delete button
-            assertTrue("Checking correct text for added element", 
+            assertTrue("Checking correct text for added element",
                        li.getText().startsWith("Something to do"));
         } finally {
             driver.quit();
