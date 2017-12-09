@@ -55,7 +55,7 @@ public class SeleniumTest {
     }
 
 
-        @Test //(expected=NoSuchElementException.class)
+        @Test
         public void testRemoveItem() {
             WebDriver driver = new FirefoxDriver();
             try {
@@ -89,4 +89,121 @@ public class SeleniumTest {
                 driver.quit();
             }
       }
+
+      @Test
+      public void testRemoveFirstItem() {
+          WebDriver driver = new FirefoxDriver();
+          try {
+              driver.get(uiPath);
+              // Find the + to click to display the form to add a todo
+              // Looking up by the id, not the name attribute
+              WebElement elt = driver.findElement(By.id("controls1plus"));
+
+              // Click on the [+]
+              elt.click();
+
+              // Find the form field
+              WebElement input = driver.findElement(By.id("itemtoadd"));
+
+              // Make up a todo
+              input.sendKeys("Something to do");
+
+              // Find and click the "Add to list" button
+              WebElement addButton = driver.findElement(By.id("addbutton"));
+              addButton.click();
+
+              input.sendKeys("A second TODO");
+              addButton.click();
+
+              // Find and click the "Delete" button
+              WebElement deleteButton = driver.findElement(By.id("button1"));
+              deleteButton.click();
+
+              WebElement li = driver.findElement(By.id("item2"));
+
+              //change to clear this thing.
+              assertTrue(li.getText().startsWith("Something to doA second TODO"));
+
+          } finally {
+              driver.quit();
+          }
+    }
+
+    @Test
+    public void testRemoveAllItems() {
+        WebDriver driver = new FirefoxDriver();
+        try {
+            driver.get(uiPath);
+            // Find the + to click to display the form to add a todo
+            // Looking up by the id, not the name attribute
+            WebElement elt = driver.findElement(By.id("controls1plus"));
+
+            // Click on the [+]
+            elt.click();
+
+            // Find the form field
+            WebElement input = driver.findElement(By.id("itemtoadd"));
+
+            // Make up a todo
+            input.sendKeys("Something to do");
+
+            // Find and click the "Add to list" button
+            WebElement addButton = driver.findElement(By.id("addbutton"));
+            addButton.click();
+
+            input.sendKeys("A second TODO");
+            addButton.click();
+
+            // Find and click the "Delete" button
+            WebElement deleteButton = driver.findElement(By.id("button1"));
+            deleteButton.click();
+
+            WebElement delete2Button = driver.findElement(By.id("button2"));
+            delete2Button.click();
+
+            List<WebElement> li = driver.findElements(By.id("item1"));
+
+            assertEquals(li.size(), 0);
+
+        } finally {
+            driver.quit();
+        }
+  }
+
+  @Test
+  public void testPlusMinusPlus() {
+      WebDriver driver = new FirefoxDriver();
+      try {
+          driver.get(uiPath);
+          // Find the + to click to display the form to add a todo
+          // Looking up by the id, not the name attribute
+          WebElement elt = driver.findElement(By.id("controls1plus"));
+
+          // Click on the [+]
+          elt.click();
+
+          WebElement elm = driver.findElement(By.id("controls1minus"));
+
+          elm.click();
+          elt.click();
+
+          // Find the form field
+          WebElement input = driver.findElement(By.id("itemtoadd"));
+
+          // Make up a todo
+          input.sendKeys("Something to do");
+
+          // Find and click the "Add to list" button
+          WebElement addButton = driver.findElement(By.id("addbutton"));
+          addButton.click();
+
+          WebElement li = driver.findElement(By.id("item1"));
+
+          assertTrue(li.getText().startsWith("Something to do"));
+
+      } finally {
+          driver.quit();
+      }
+}
+
 }

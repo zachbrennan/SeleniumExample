@@ -1,0 +1,17 @@
+Zachary Brennan
+SE 320
+Homework 5
+Discussion of trade-offs
+
+The biggest advantage to only using Event Coverage for this application, is that
+it makes it easiest for us to complete this assignment. It is not very robust of
+a coverage criteria, and is akin to statement coverage in its short-comings. 
+Event-Interaction and Length-n Event-sequence coverage both require more tests 
+to be written, trading simplicity and ease of testing, for more robust tests, 
+that cover more scenarios that your software may encounter. Moving up to 
+Event-Interaction Coverage would force us to write significantly more tests, as 
+each of the N Event-Coverage tasks would turn in to roughly N * (N-1) tests.
+Length-n Event-Sequence Coverage would give the best idea of how your software 
+would hold up to actual use, but also requires the most tests to be written. 
+This method needs an almost unnecessary amount of tests to be written, and it is 
+extremely time inefficient to try to do it, unless the program is very small. 
